@@ -1,3 +1,11 @@
+import { ApolloProvider } from "@apollo/client";
+import { client } from "apollo/client";
+import Todos from "pages/todos/Todos";
+
 export const App = () => {
-  return <div className="bg-red-600">App</div>;
+  return (
+    <ApolloProvider client={client}>
+      <Todos />
+    </ApolloProvider>
+  );
 };
