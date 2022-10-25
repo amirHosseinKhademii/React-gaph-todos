@@ -1,0 +1,8 @@
+query TODOS {
+  todos {
+    id
+    title
+    body
+    user
+  }
+}
