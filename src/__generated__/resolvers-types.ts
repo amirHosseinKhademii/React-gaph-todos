@@ -144,6 +144,13 @@ export type User = {
   todos: Array<Todo>;
 };
 
+export type Delete_TodoMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type Delete_TodoMutation = { __typename?: 'Mutation', removeTodo: string };
+
 export type Complete_TodoMutationVariables = Exact<{
   id: Scalars['String'];
   isCompleted: Scalars['Boolean'];
@@ -158,6 +165,37 @@ export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
 export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, isCompleted: boolean, createdDate: any }> };
 
 
+export const Delete_TodoDocument = gql`
+    mutation DELETE_TODO($id: String!) {
+  removeTodo(id: $id)
+}
+    `;
+export type Delete_TodoMutationFn = Apollo.MutationFunction<Delete_TodoMutation, Delete_TodoMutationVariables>;
+
+/**
+ * __useDelete_TodoMutation__
+ *
+ * To run a mutation, you first call `useDelete_TodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDelete_TodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteTodoMutation, { data, loading, error }] = useDelete_TodoMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDelete_TodoMutation(baseOptions?: Apollo.MutationHookOptions<Delete_TodoMutation, Delete_TodoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<Delete_TodoMutation, Delete_TodoMutationVariables>(Delete_TodoDocument, options);
+      }
+export type Delete_TodoMutationHookResult = ReturnType<typeof useDelete_TodoMutation>;
+export type Delete_TodoMutationResult = Apollo.MutationResult<Delete_TodoMutation>;
+export type Delete_TodoMutationOptions = Apollo.BaseMutationOptions<Delete_TodoMutation, Delete_TodoMutationVariables>;
 export const Complete_TodoDocument = gql`
     mutation COMPLETE_TODO($id: String!, $isCompleted: Boolean!) {
   completeTodo(id: $id, isCompleted: $isCompleted) {

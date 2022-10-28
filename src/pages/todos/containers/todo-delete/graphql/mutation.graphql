@@ -1,0 +1,3 @@
+mutation DELETE_TODO($id: String!) {
+  removeTodo(id: $id)
+}
