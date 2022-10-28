@@ -8,7 +8,7 @@ const Todos = () => {
   return (
     <div className="flex flex-col space-y-2 md:max-w-md w-full">
       {data?.todos.map((todo) => (
-        <Todo key={todo.id}>
+        <Todo key={todo.id} {...{ todo }}>
           <TodoHeader {...{ todo }}>
             <TodoIsCompleted {...{ todo }} />
           </TodoHeader>

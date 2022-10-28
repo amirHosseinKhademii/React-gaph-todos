@@ -7,7 +7,7 @@ export const TodoIsCompleted = ({ todo }: TTodo) => {
   return (
     <input
       type="checkbox"
-      className="w-5 h-5 rounded appearance-none border border-green-600 checked:bg-green-500"
+      className="w-6 h-6 cursor-pointer"
       checked={todo.isCompleted}
       onChange={() =>
         mutate({

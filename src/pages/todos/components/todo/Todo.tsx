@@ -1,8 +1,14 @@
-import { ReactNode } from "react";
+import { joiner } from "utils";
+import { TTodo } from "./todo.types";
 
-export const Todo = ({ children }: { children: ReactNode }) => {
+export const Todo = ({ children, todo }: TTodo) => {
   return (
-    <div className=" w-full rounded bg-cyan-500 min-h-fit flex flex-col p-2 space-y-2">
+    <div
+      className={joiner(
+        " w-full rounded  min-h-fit flex flex-col p-2 space-y-2",
+        todo.isCompleted ? "bg-cyan-500" : "bg-amber-500"
+      )}
+    >
       {children}
     </div>
   );
