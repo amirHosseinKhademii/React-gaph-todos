@@ -1,12 +1,13 @@
 import { useTodosQuery } from "__generated__/resolvers-types";
+import { Todo } from "./components";
 
 const Todos = () => {
   const { data } = useTodosQuery();
 
   return (
-    <div>
+    <div className="flex flex-col space-y-2 md:max-w-md w-full">
       {data?.todos.map((todo) => (
-        <li>{todo.title}</li>
+        <Todo key={todo.id} {...{ todo }} />
       ))}
     </div>
   );
