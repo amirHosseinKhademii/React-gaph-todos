@@ -3,7 +3,6 @@ import { Todo } from "./components";
 
 const Todos = () => {
   const { data } = useTodosQuery();
-  console.log(data);
 
   return (
     <div className="flex flex-col space-y-2 md:max-w-md w-full">

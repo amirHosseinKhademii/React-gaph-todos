@@ -70,6 +70,7 @@ type Mutation {
   updateAuthor(id: String!, author: String!): String!
   createTodo(title: String!, body: String): Todo!
   removeTodo(id: String!): String!
+  completeTodo(id: String!, isCompleted: Boolean!): Todo!
   createUser(email: String!, password: String!): User!
   signInUser(email: String!, password: String!): String!
 }

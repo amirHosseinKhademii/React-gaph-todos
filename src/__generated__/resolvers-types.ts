@@ -46,6 +46,7 @@ export type BookInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  completeTodo: Todo;
   createBook: Book;
   createTodo: Todo;
   createUser: User;
@@ -54,6 +55,12 @@ export type Mutation = {
   signInUser: Scalars['String'];
   updateAuthor: Scalars['String'];
   updateBook: Book;
+};
+
+
+export type MutationCompleteTodoArgs = {
+  id: Scalars['String'];
+  isCompleted: Scalars['Boolean'];
 };
 
 
