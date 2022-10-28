@@ -1,0 +1,8 @@
+mutation COMPLETE_TODO($id: String!, $isCompleted: Boolean!) {
+  completeTodo(id: $id, isCompleted: $isCompleted) {
+    isCompleted
+    title
+    body
+    id
+  }
+}
