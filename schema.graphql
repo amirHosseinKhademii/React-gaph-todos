@@ -90,6 +90,8 @@ type Todo {
   id: String
   title: String!
   body: String
+  isCompleted: Boolean!
+  createdDate: DateTime!
 }
 
 type Book {
@@ -111,3 +113,8 @@ input AuthorInput {
 type Author {
   name: String!
 }
+
+"""
+The `DateTime` scalar represents an ISO-8601 compliant date time type.
+"""
+scalar DateTime

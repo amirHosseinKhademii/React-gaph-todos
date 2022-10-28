@@ -13,6 +13,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The `DateTime` scalar represents an ISO-8601 compliant date time type. */
+  DateTime: any;
 };
 
 export enum ApplyPolicy {
@@ -120,7 +122,9 @@ export type Subscription = {
 export type Todo = {
   __typename?: 'Todo';
   body?: Maybe<Scalars['String']>;
+  createdDate: Scalars['DateTime'];
   id?: Maybe<Scalars['String']>;
+  isCompleted: Scalars['Boolean'];
   title: Scalars['String'];
   user: User;
 };
@@ -136,7 +140,7 @@ export type User = {
 export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, user: { __typename?: 'User', email: string, id?: string | null } }> };
+export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, isCompleted: boolean, createdDate: any }> };
 
 
 export const TodosDocument = gql`
@@ -145,10 +149,8 @@ export const TodosDocument = gql`
     id
     title
     body
-    user {
-      email
-      id
-    }
+    isCompleted
+    createdDate
   }
 }
     `;

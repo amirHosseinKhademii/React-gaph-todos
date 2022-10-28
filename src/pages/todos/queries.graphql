@@ -3,9 +3,7 @@ query TODOS {
     id
     title
     body
-    user {
-      email
-      id
-    }
+    isCompleted
+    createdDate
   }
 }
