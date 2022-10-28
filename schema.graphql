@@ -60,6 +60,7 @@ type Query {
   books: [Book!]!
   todos: [Todo!]!
   users: [User!]!
+  user: User!
 }
 
 type Mutation {
@@ -68,27 +69,33 @@ type Mutation {
   updateBook(book: BookInput!): Book!
   updateAuthor(id: String!, author: String!): String!
   createTodo(title: String!, body: String): Todo!
+  removeTodo(id: String!): String!
   createUser(email: String!, password: String!): User!
   signInUser(email: String!, password: String!): String!
 }
 
+type Subscription {
+  todoAdded: Todo!
+}
+
+type User {
+  todos: [Todo!]!
+  id: String
+  email: String!
+  password: String!
+}
+
 type Todo {
+  user: User!
   id: String
   title: String!
   body: String
-  user: String
 }
 
 type Book {
   id: String
   title: String!
   author: Author
-}
-
-type User {
-  id: String
-  email: String!
-  password: String!
 }
 
 input BookInput {

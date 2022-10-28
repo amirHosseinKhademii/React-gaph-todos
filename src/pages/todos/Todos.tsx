@@ -2,9 +2,14 @@ import { useTodosQuery } from "__generated__/resolvers-types";
 
 const Todos = () => {
   const { data } = useTodosQuery();
-  console.log(data);
 
-  return <div>Todos</div>;
+  return (
+    <div>
+      {data?.todos.map((todo) => (
+        <li>{todo.title}</li>
+      ))}
+    </div>
+  );
 };
 
 export default Todos;

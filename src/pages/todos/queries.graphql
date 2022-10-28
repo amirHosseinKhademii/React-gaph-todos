@@ -3,6 +3,9 @@ query TODOS {
     id
     title
     body
-    user
+    user {
+      email
+      id
+    }
   }
 }

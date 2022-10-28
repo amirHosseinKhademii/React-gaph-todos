@@ -48,6 +48,7 @@ export type Mutation = {
   createTodo: Todo;
   createUser: User;
   deleteBook: Scalars['String'];
+  removeTodo: Scalars['String'];
   signInUser: Scalars['String'];
   updateAuthor: Scalars['String'];
   updateBook: Book;
@@ -76,6 +77,11 @@ export type MutationDeleteBookArgs = {
 };
 
 
+export type MutationRemoveTodoArgs = {
+  id: Scalars['String'];
+};
+
+
 export type MutationSignInUserArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -97,6 +103,7 @@ export type Query = {
   book?: Maybe<Book>;
   books: Array<Book>;
   todos: Array<Todo>;
+  user: User;
   users: Array<User>;
 };
 
@@ -105,12 +112,17 @@ export type QueryBookArgs = {
   id: Scalars['String'];
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  todoAdded: Todo;
+};
+
 export type Todo = {
   __typename?: 'Todo';
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   title: Scalars['String'];
-  user?: Maybe<Scalars['String']>;
+  user: User;
 };
 
 export type User = {
@@ -118,12 +130,13 @@ export type User = {
   email: Scalars['String'];
   id?: Maybe<Scalars['String']>;
   password: Scalars['String'];
+  todos: Array<Todo>;
 };
 
 export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, user?: string | null }> };
+export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, user: { __typename?: 'User', email: string, id?: string | null } }> };
 
 
 export const TodosDocument = gql`
@@ -132,7 +145,10 @@ export const TodosDocument = gql`
     id
     title
     body
-    user
+    user {
+      email
+      id
+    }
   }
 }
     `;
