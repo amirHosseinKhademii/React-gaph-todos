@@ -1,5 +1,6 @@
 import { useTodosQuery } from "__generated__/resolvers-types";
-import { Todo } from "./components";
+import { Todo, TodoBody, TodoHeader } from "./components";
+import { TodoIsCompleted } from "./containers";
 
 const Todos = () => {
   const { data } = useTodosQuery();
@@ -7,7 +8,12 @@ const Todos = () => {
   return (
     <div className="flex flex-col space-y-2 md:max-w-md w-full">
       {data?.todos.map((todo) => (
-        <Todo key={todo.id} {...{ todo }} />
+        <Todo key={todo.id}>
+          <TodoHeader {...{ todo }}>
+            <TodoIsCompleted {...{ todo }} />
+          </TodoHeader>
+          <TodoBody {...{ todo }} />
+        </Todo>
       ))}
     </div>
   );
