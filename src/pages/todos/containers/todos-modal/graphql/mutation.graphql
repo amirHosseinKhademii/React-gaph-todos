@@ -4,3 +4,10 @@ mutation CREATE_TODO($title: String!, $body: String) {
     body
   }
 }
+
+mutation UPDATE_TODO($id: String!, $body: String!, $title: String!) {
+  updateTodo(id: $id, body: $body, title: $title) {
+    title
+    body
+  }
+}

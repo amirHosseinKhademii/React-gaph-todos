@@ -55,6 +55,7 @@ export type Mutation = {
   signInUser: Scalars['String'];
   updateAuthor: Scalars['String'];
   updateBook: Book;
+  updateTodo: Todo;
 };
 
 
@@ -107,6 +108,13 @@ export type MutationUpdateBookArgs = {
   book: BookInput;
 };
 
+
+export type MutationUpdateTodoArgs = {
+  body: Scalars['String'];
+  id: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   book?: Maybe<Book>;
@@ -130,7 +138,7 @@ export type Todo = {
   __typename?: 'Todo';
   body?: Maybe<Scalars['String']>;
   createdDate: Scalars['DateTime'];
-  id?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   isCompleted: Scalars['Boolean'];
   title: Scalars['String'];
   user: User;
@@ -157,7 +165,7 @@ export type Complete_TodoMutationVariables = Exact<{
 }>;
 
 
-export type Complete_TodoMutation = { __typename?: 'Mutation', completeTodo: { __typename?: 'Todo', isCompleted: boolean, title: string, body?: string | null, id?: string | null } };
+export type Complete_TodoMutation = { __typename?: 'Mutation', completeTodo: { __typename?: 'Todo', isCompleted: boolean, title: string, body?: string | null, id: string } };
 
 export type Create_TodoMutationVariables = Exact<{
   title: Scalars['String'];
@@ -167,15 +175,24 @@ export type Create_TodoMutationVariables = Exact<{
 
 export type Create_TodoMutation = { __typename?: 'Mutation', createTodo: { __typename?: 'Todo', title: string, body?: string | null } };
 
+export type Update_TodoMutationVariables = Exact<{
+  id: Scalars['String'];
+  body: Scalars['String'];
+  title: Scalars['String'];
+}>;
+
+
+export type Update_TodoMutation = { __typename?: 'Mutation', updateTodo: { __typename?: 'Todo', title: string, body?: string | null } };
+
 export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, isCompleted: boolean, createdDate: any }> };
+export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id: string, title: string, body?: string | null, isCompleted: boolean, createdDate: any }> };
 
 export type Tdoo_AddedSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Tdoo_AddedSubscription = { __typename?: 'Subscription', todoAdded: { __typename?: 'Todo', title: string, body?: string | null, id?: string | null, isCompleted: boolean, createdDate: any } };
+export type Tdoo_AddedSubscription = { __typename?: 'Subscription', todoAdded: { __typename?: 'Todo', title: string, body?: string | null, id: string, isCompleted: boolean, createdDate: any } };
 
 
 export const Delete_TodoDocument = gql`
@@ -281,6 +298,42 @@ export function useCreate_TodoMutation(baseOptions?: Apollo.MutationHookOptions<
 export type Create_TodoMutationHookResult = ReturnType<typeof useCreate_TodoMutation>;
 export type Create_TodoMutationResult = Apollo.MutationResult<Create_TodoMutation>;
 export type Create_TodoMutationOptions = Apollo.BaseMutationOptions<Create_TodoMutation, Create_TodoMutationVariables>;
+export const Update_TodoDocument = gql`
+    mutation UPDATE_TODO($id: String!, $body: String!, $title: String!) {
+  updateTodo(id: $id, body: $body, title: $title) {
+    title
+    body
+  }
+}
+    `;
+export type Update_TodoMutationFn = Apollo.MutationFunction<Update_TodoMutation, Update_TodoMutationVariables>;
+
+/**
+ * __useUpdate_TodoMutation__
+ *
+ * To run a mutation, you first call `useUpdate_TodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdate_TodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTodoMutation, { data, loading, error }] = useUpdate_TodoMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      body: // value for 'body'
+ *      title: // value for 'title'
+ *   },
+ * });
+ */
+export function useUpdate_TodoMutation(baseOptions?: Apollo.MutationHookOptions<Update_TodoMutation, Update_TodoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<Update_TodoMutation, Update_TodoMutationVariables>(Update_TodoDocument, options);
+      }
+export type Update_TodoMutationHookResult = ReturnType<typeof useUpdate_TodoMutation>;
+export type Update_TodoMutationResult = Apollo.MutationResult<Update_TodoMutation>;
+export type Update_TodoMutationOptions = Apollo.BaseMutationOptions<Update_TodoMutation, Update_TodoMutationVariables>;
 export const TodosDocument = gql`
     query TODOS {
   todos {

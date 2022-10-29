@@ -71,6 +71,7 @@ type Mutation {
   createTodo(title: String!, body: String): Todo!
   removeTodo(id: String!): String!
   completeTodo(id: String!, isCompleted: Boolean!): Todo!
+  updateTodo(id: String!, body: String!, title: String!): Todo!
   createUser(email: String!, password: String!): User!
   signInUser(email: String!, password: String!): String!
 }
@@ -88,7 +89,7 @@ type User {
 
 type Todo {
   user: User!
-  id: String
+  id: String!
   title: String!
   body: String
   isCompleted: Boolean!
