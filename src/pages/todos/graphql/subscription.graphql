@@ -1,0 +1,9 @@
+subscription TDOO_ADDED {
+  todoAdded {
+    title
+    body
+    id
+    isCompleted
+    createdDate
+  }
+}

@@ -164,6 +164,11 @@ export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TodosQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'Todo', id?: string | null, title: string, body?: string | null, isCompleted: boolean, createdDate: any }> };
 
+export type Tdoo_AddedSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Tdoo_AddedSubscription = { __typename?: 'Subscription', todoAdded: { __typename?: 'Todo', title: string, body?: string | null, id?: string | null, isCompleted: boolean, createdDate: any } };
+
 
 export const Delete_TodoDocument = gql`
     mutation DELETE_TODO($id: String!) {
@@ -271,3 +276,36 @@ export function useTodosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Todo
 export type TodosQueryHookResult = ReturnType<typeof useTodosQuery>;
 export type TodosLazyQueryHookResult = ReturnType<typeof useTodosLazyQuery>;
 export type TodosQueryResult = Apollo.QueryResult<TodosQuery, TodosQueryVariables>;
+export const Tdoo_AddedDocument = gql`
+    subscription TDOO_ADDED {
+  todoAdded {
+    title
+    body
+    id
+    isCompleted
+    createdDate
+  }
+}
+    `;
+
+/**
+ * __useTdoo_AddedSubscription__
+ *
+ * To run a query within a React component, call `useTdoo_AddedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useTdoo_AddedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTdoo_AddedSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTdoo_AddedSubscription(baseOptions?: Apollo.SubscriptionHookOptions<Tdoo_AddedSubscription, Tdoo_AddedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<Tdoo_AddedSubscription, Tdoo_AddedSubscriptionVariables>(Tdoo_AddedDocument, options);
+      }
+export type Tdoo_AddedSubscriptionHookResult = ReturnType<typeof useTdoo_AddedSubscription>;
+export type Tdoo_AddedSubscriptionResult = Apollo.SubscriptionResult<Tdoo_AddedSubscription>;

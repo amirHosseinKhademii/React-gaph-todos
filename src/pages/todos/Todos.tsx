@@ -1,9 +1,14 @@
-import { useTodosQuery } from "__generated__/resolvers-types";
+import {
+  useTdoo_AddedSubscription,
+  useTodosQuery,
+} from "__generated__/resolvers-types";
 import { Todo, TodoBody, TodoFooter, TodoHeader } from "./components";
 import { TodoIsCompleted, TodoDelete } from "./containers";
 
 const Todos = () => {
   const { data } = useTodosQuery();
+  // const { data: todoAdded } = useTdoo_AddedSubscription();
+  // console.log(todoAdded);
 
   return (
     <div className="flex flex-col space-y-2 md:max-w-md w-full">
