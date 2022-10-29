@@ -1,13 +1,7 @@
-import { Modal } from "components/modal";
 import { RecoilRoot } from "recoil";
 import { useTodosQuery } from "__generated__/resolvers-types";
-import { Todo, TodoBody, TodoFooter, TodoHeader } from "./components";
-import {
-  TodoIsCompleted,
-  TodoDelete,
-  TodosToolbar,
-  TodosModal,
-} from "./containers";
+import { Todo, TodoBody } from "./components";
+import { TodosToolbar, TodosModal, TodoFooter, TodoHeader } from "./containers";
 import { TodosLayout } from "./layouts";
 
 const Todos = () => {
@@ -19,13 +13,9 @@ const Todos = () => {
         <TodosToolbar />
         {data?.todos.map((todo) => (
           <Todo key={todo.id} {...{ todo }}>
-            <TodoHeader {...{ todo }}>
-              <TodoIsCompleted {...{ todo }} />
-            </TodoHeader>
+            <TodoHeader {...{ todo }} />
             <TodoBody {...{ todo }} />
-            <TodoFooter {...{ todo }}>
-              <TodoDelete {...{ todo }} />
-            </TodoFooter>
+            <TodoFooter {...{ todo }} />
           </Todo>
         ))}
       </TodosLayout>
