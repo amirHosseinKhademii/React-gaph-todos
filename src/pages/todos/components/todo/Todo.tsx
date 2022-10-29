@@ -5,8 +5,8 @@ export const Todo = ({ children, todo }: TTodo) => {
   return (
     <div
       className={joiner(
-        " w-full rounded  min-h-fit flex flex-col p-2 space-y-3",
-        todo.isCompleted ? "bg-cyan-500" : "bg-amber-400"
+        " w-full rounded flex flex-col p-2 space-y-3 min-h-[200px] justify-between",
+        todo.isCompleted ? "bg-cyan-500" : "bg-lime-400"
       )}
     >
       {children}

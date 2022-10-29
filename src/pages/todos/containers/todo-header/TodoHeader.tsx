@@ -5,7 +5,7 @@ export const TodoHeader = ({ todo }: TTodo) => {
   const [mutate] = useComplete_TodoMutation();
   return (
     <div className="w-full flex items-center justify-between">
-      <span className=" font-sans text-gray-600  text-lg">{todo.title}</span>
+      <span className=" font-sans text-gray-800  text-lg">{todo.title}</span>
       <input
         type="checkbox"
         className="w-6 h-6 cursor-pointer"
