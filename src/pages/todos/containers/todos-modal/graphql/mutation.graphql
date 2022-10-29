@@ -1,0 +1,6 @@
+mutation CREATE_TODO($title: String!, $body: String) {
+  createTodo(title: $title, body: $body) {
+    title
+    body
+  }
+}

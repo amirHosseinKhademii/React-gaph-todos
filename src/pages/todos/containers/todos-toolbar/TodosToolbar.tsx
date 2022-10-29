@@ -6,9 +6,9 @@ export const TodosToolbar = () => {
   const onOpen = () => setModal((prev) => ({ ...prev, isOpen: true }));
 
   return (
-    <div>
+    <div className="flex items-center w-full justify-end">
       <ICPlus
-        className="w-7 h-7 text-green-700 cursor-pointer self-end"
+        className="w-7 h-7 text-green-700 cursor-pointer"
         onClick={onOpen}
       />
     </div>
