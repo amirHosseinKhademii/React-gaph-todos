@@ -1,7 +1,13 @@
+import { Modal } from "components/modal";
 import { RecoilRoot } from "recoil";
 import { useTodosQuery } from "__generated__/resolvers-types";
 import { Todo, TodoBody, TodoFooter, TodoHeader } from "./components";
-import { TodoIsCompleted, TodoDelete, TodosToolbar } from "./containers";
+import {
+  TodoIsCompleted,
+  TodoDelete,
+  TodosToolbar,
+  TodosModal,
+} from "./containers";
 import { TodosLayout } from "./layouts";
 
 const Todos = () => {
@@ -23,6 +29,7 @@ const Todos = () => {
           </Todo>
         ))}
       </TodosLayout>
+      <TodosModal />
     </RecoilRoot>
   );
 };
